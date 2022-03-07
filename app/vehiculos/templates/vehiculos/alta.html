@@ -1,0 +1,26 @@
+{% extends "base_template.html" %}
+{% from "_render_elements.html" import render_input %}
+
+{% block title %}
+    Alta de vehículos aparecidos.
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="offset-md-3 col-md-6">
+        <form action="" method="post" enctype="multipart/form-data" novalidate>	
+            {{ form.hidden_tag() }}
+            
+            {{ render_input(form.vehiculo,'', id= "vehiculo" , class="form-control", placeholder="Vehiculo" ) }}
+            {{ render_input(form.rama,'', id= "rama" , class="form-control", placeholder="Rama" ) }}
+            {{ render_input(form.siniestro,'', id= "Siniestro" , class="form-control", placeholder="Siniestro" ) }}
+            {{ render_input(form.fe_ocurrencia,'', id= "fe_ocurrencia" , class="form-control", placeholder="Fecha de ocurrencia" ) }}
+            {{ render_input(form.fe_pago,'', id= "fe_pago" , class="form-control", placeholder="Fecha de pago" ) }}
+            {{ render_input(form.fe_aviso_aparicion,'', id= "fe_aviso_aparicion" , class="form-control", placeholder="Fecha de aviso de aparicion" ) }}
+            {{ render_input(form.importe_pagado,'', id= "importe_pagado" , class="form-control", placeholder="Importe pagado" ) }}
+            {{ render_input(form.asegurado,'', id= "asegurado" , class="form-control", placeholder="Asegurado" ) }}
+                                
+            <button type="submmit" class="btn btn-primary" > Enviar</button>
+    </div>
+</div>
+{% endblock %}

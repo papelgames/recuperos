@@ -52,9 +52,11 @@ def alta_tareas():
     if form.validate_on_submit():
         descripcion = form.descripcion.data
         vencimiento = form.vencimiento.data
-        
+        modulo_inicial = form.modulo_inicial.data
+
         alta = Tareas(descripcion = descripcion,
-                      vencimiento = vencimiento
+                      vencimiento = vencimiento,
+                      modulo_inicial = modulo_inicial
         )
         alta.save()
         flash ("Se ha guardado correctamente", "alert-success")
@@ -80,7 +82,8 @@ def modificacion_tareas(id_tarea):
     if form.validate_on_submit():
         tarea.descripcion = form.descripcion.data
         tarea.vencimiento = form.vencimiento.data
-        
+        tarea.modulo_inicial = form.modulo_inicial.data
+
         tarea.save()
         flash ("Se ha guardado correctamente", "alert-success")
         return redirect(url_for("abms.tareas"))

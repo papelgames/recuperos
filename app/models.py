@@ -250,6 +250,7 @@ class Recuperos (Base):
     monto_franquicia = db.Column(db.Float)
     responsabilidad = db.Column(db.Integer()) #tabla respondabilidades
     analista_siniestro = db.Column(db.String(4)) #alfanumerico de GLM 
+    modulo = db.Column(db.String(50))
     usuario_responsable = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
     tareas_pendientes = db.relationship ("TareasPendientes")
     cobros = db.relationship ("Cobros")
@@ -293,6 +294,7 @@ class Tareas (Base):
     __tablename__ = "tareas"
     descripcion = db.Column(db.String(50), nullable=False)
     vencimiento = db.Column(db.Integer, nullable=False)
+    modulo_inicial = db.Column(db.String(50))
     acciones = db.relationship("Acciones", secondary="tareasacciones", backref="ta", lazy= "dynamic")
     tareas_pendientes = db.relationship ("TareasPendientes")
     
@@ -304,6 +306,11 @@ class Tareas (Base):
     def get_by_id(id):
         return Tareas.query.get(id)
     
+    @staticmethod
+    def get_by_modulo_inicial(modulo):
+        return Tareas.query.filter_by(modulo_inicial=modulo).first()
+    
+
     @staticmethod
     def get_all():
         return Tareas.query.all()
@@ -330,6 +337,11 @@ class TareasPendientes (Base):
     fe_vencimiento = db.Column(db.DateTime, nullable = False)
     fe_fin = db.Column(db.DateTime)
     observacion = db.relationship("Observaciones")
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
 
 class Cobros (Base):
     __tablename__ = "cobros"

@@ -9,7 +9,8 @@ from wtforms.validators import DataRequired, Length, Email
 class TareasForm(FlaskForm):
     descripcion = StringField('Descripción', validators=[DataRequired('Complete la descripcion de la tarea')])
     vencimiento = IntegerField('Dias de vencimiento', validators=[DataRequired('Complete la cantidad días de vencimiento')])
-    
+    modulo_inicial = StringField('Módulo Inicial')
+
 class AccionesForm(FlaskForm):
     descripcion = StringField('Descripción', validators=[DataRequired('Complete la descripciín de la acción')])
     estado_recupero = SelectField('Estado', choices =[], coerce = str, default = None, validators=[DataRequired('Debe seleccionar un estado')])

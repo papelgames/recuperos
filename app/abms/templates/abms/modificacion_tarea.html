@@ -14,7 +14,7 @@
             <h1>Corrigiendo tarea ID: {{ tarea.id }}</h1>
             {{ render_input(form.descripcion,'', id= "descripcion" , value = tarea.descripcion , class="form-control", placeholder="Descripcion de la tarea" ) }}
             {{ render_input(form.vencimiento,'',id= "vencimiento" , value = tarea.vencimiento ,class="form-control", placeholder="Ingrese la cantidad de dias para el vencimiento de la tarea" ) }}
-            
+            {{ render_input(form.modulo_inicial,'',id= "modulo_inicial" ,  value = tarea.modulo_inicial , class="form-control", placeholder="Si la tarea es la que inicia un modulo ingrese el modulo" ) }}
             <button type="submmit" class="btn btn-primary" >Guardar</button>
     </div>
 </div>

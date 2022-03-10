@@ -1,4 +1,7 @@
+from tarfile import PAX_NUMBER_FIELDS
+from threading import activeCount
 from flask_login import UserMixin
+from jinja2 import PrefixLoader
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db
@@ -13,10 +16,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(256), unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
+    perfil = db.Column(db.String(30))
+    activo = db.Column(db.Boolean, default=True)
 
-    def __init__(self, name, email):
-        self.name = name
-        self.email = email
+    # def __init__(self, name, email):
+    #     self.name = name
+    #     self.email = email
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -47,3 +52,7 @@ class User(db.Model, UserMixin):
     @staticmethod
     def get_all():
         return User.query.all()
+    
+    @staticmethod
+    def get_by_activo_modulo(perfil):
+        return User.query.filter_by(activo=True, perfil = perfil).all()

@@ -14,6 +14,7 @@ from . import vehiculos_bp
 from .forms import AltaVehiculosForm
 
 from app.common.mail import send_email
+from app.common.asignador import asignar
 
 from datetime import datetime, time, timedelta
 
@@ -44,7 +45,8 @@ def alta():
                          fe_aviso_aparicion=fe_aviso_aparicion,
                          importe_pagado=importe_pagado,
                          asegurado=asegurado, 
-                         modulo = 'vehiculo'
+                         modulo = 'vehiculo',
+                         usuario_responsable = asignar()
                          )
         alta.save()
         tareaInicial = TareasPendientes (id_tarea =tarea_inicial.id,

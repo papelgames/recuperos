@@ -261,6 +261,12 @@ class Recuperos (Base):
             db.session.add(self)
         db.session.commit()
 
+    @staticmethod
+    def get_ultimo_registro():
+        return Recuperos.query.order_by(Recuperos.id.desc()).first()
+
+
+# order_by(Record.id.desc()).first()
 
 class Acciones (Base):
     __tablename__ = "acciones"

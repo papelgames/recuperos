@@ -54,5 +54,5 @@ class User(db.Model, UserMixin):
         return User.query.all()
     
     @staticmethod
-    def get_by_activo_modulo(perfil):
+    def get_by_perfil_activo(perfil):
         return User.query.filter_by(activo=True, perfil = perfil).all()
